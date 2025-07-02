@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Tienda</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Mi Tienda</h1>
+    <nav>
+      <ul id="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li id="menu-login"><a href="login.html">Iniciar Sesión</a></li>
+        <li id="menu-registro"><a href="registro.html">Registrarse</a></li>
+        <li id="menu-usuario" style="display:none;"></li>
+        <li><a href="carrito.html">Carrito</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="filtros">
+    <input type="text" id="busqueda" placeholder="Buscar...">
+    <select id="filtro-categoria">
+      <option value="">Categoría</option>
+      <option value="Camisas">Camisas</option>
+      <option value="Pantalones">Pantalones</option>
+      <option value="Vestidos">Vestidos</option>
+      <option value="Zapatillas">Zapatillas</option>
+      <option value="Zapatos">Zapatos</option>
+      <option value="Trajes de baño">Trajes de baño</option>
+    </select>
+    <select id="filtro-talla">
+      <option value="">Talla</option>
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="36">36</option>
+      <option value="37">37</option>
+      <option value="38">38</option>
+      <option value="39">39</option>
+      <option value="40">40</option>
+      <option value="41">41</option>
+      <option value="42">42</option>
+    </select>
+  </section>
+
+  <main id="contenedor-productos"></main>
+
+  <footer>
+    <p>&copy; 2025 Mi Tienda - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="index.js"></script>
+  <script>
+    // Muestra usuario en el menú si está logueado
+    const usuario = localStorage.getItem("usuario");
+    if (usuario) {
+      document.getElementById("menu-login").style.display = "none";
+      document.getElementById("menu-registro").style.display = "none";
+      const menuUsuario = document.getElementById("menu-usuario");
+      menuUsuario.style.display = "inline";
+      menuUsuario.innerHTML = `<a href="#">${usuario}</a> <a href="#" onclick="cerrarSesion()">Salir</a>`;
+    }
+
+    function cerrarSesion() {
+      localStorage.removeItem("usuario");
+      location.reload();
+    }
+  </script>
+</body>
+</html>
